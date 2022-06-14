@@ -1,0 +1,430 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "FHIR Proxy",
+        "description": "Import from \"func-fhirproxy-testa-westeu\" Function App",
+        "version": "1.0"
+    },
+    "servers": [{
+        "url": "https://apim-medlix-testa.azure-api.net/fhir"
+    }],
+    "paths": {
+        "/{*restOfPath}": {
+            "delete": {
+                "summary": "Admin: ProxyFunction",
+                "operationId": "delete-proxyfunction",
+                "parameters": [{
+                    "name": "*restOfPath",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Admin: ProxyFunction",
+                "operationId": "patch-proxyfunction",
+                "parameters": [{
+                    "name": "*restOfPath",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            },
+            "put": {
+                "summary": "Admin: ProxyFunction",
+                "operationId": "put-proxyfunction",
+                "parameters": [{
+                    "name": "*restOfPath",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            },
+            "post": {
+                "summary": "Admin: ProxyFunction",
+                "operationId": "post-proxyfunction",
+                "parameters": [{
+                    "name": "*restOfPath",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/Patient": {
+            "get": {
+                "summary": "Admin: all patients",
+                "description": "Retrieve appointsments for a patient",
+                "operationId": "6288d9bcefeae6b5644f76a1",
+                "parameters": [{
+                    "name": "date",
+                    "in": "query",
+                    "description": "Date filter to filter results on date. Use FHIR filtering syntax to include operators. E.g. ge2022-05-01 will only show appointments with a start date > 2022-05-01",
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "_sort",
+                    "in": "query",
+                    "description": "Sort parameter based on support FHIR Appointment sort operators. In addition custom sort parameter appointment-sort-start is supported which sorts on start date. \nValid value e.g. appointment-sort-date",
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/Appointment/{id}": {
+            "put": {
+                "summary": "Admin: Appointment update",
+                "operationId": "dev-appointment-update",
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "Appointment ID",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/Communication": {
+            "patch": {
+                "summary": "Communication ",
+                "operationId": "62945ee890ffdfe8419933b2",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            },
+            "get": {
+                "summary": "Communication for patient",
+                "operationId": "6288d6b673bb1f3bd3f4a38d",
+                "parameters": [{
+                    "name": "patientId",
+                    "in": "query",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            },
+            "post": {
+                "summary": "Communication",
+                "operationId": "communication",
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/Task": {
+            "get": {
+                "summary": "Tasks by encounter",
+                "description": "Retrieve tasks related to a specific encounter",
+                "operationId": "get-proxyfunction-task",
+                "parameters": [{
+                    "name": "encounterId",
+                    "in": "query",
+                    "description": "UUID of encounter",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/CareTeam": {
+            "get": {
+                "summary": "CareTeam",
+                "description": "Retrieve related careteams for a patient",
+                "operationId": "get-proxyfunction-careteam",
+                "parameters": [{
+                    "name": "patientId",
+                    "in": "query",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "_count",
+                    "in": "query",
+                    "description": "Maximum number of response records",
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "_sort",
+                    "in": "query",
+                    "description": "Sort parameter. Default to -_lastUpdated",
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/Observation": {
+            "get": {
+                "summary": "Observation",
+                "description": "Get list of observations for specific patient and code",
+                "operationId": "observation",
+                "parameters": [{
+                    "name": "code",
+                    "in": "query",
+                    "description": "Observation (LOINC) code, e.g. 8867-4",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "subject",
+                    "in": "query",
+                    "description": "Observation subject. Typically reference such as Patient/f1298558-c5fa-4f1a-bce0-9548f0e4dc53",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/Appointment/{*restOfPath}": {
+            "get": {
+                "summary": "Admin: get Appointment",
+                "description": "Retrieves a list of all active chat threads",
+                "operationId": "6293c27b7df2c87ffc87cf02",
+                "parameters": [{
+                    "name": "*restOfPath",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/Encounter": {
+            "get": {
+                "summary": "Encounter overview by patient",
+                "description": "Retrieve appointsments for a patient",
+                "operationId": "6288db9094a4290a94d89bd1",
+                "parameters": [{
+                    "name": "patientId",
+                    "in": "query",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "date",
+                    "in": "query",
+                    "description": "Date filter to filter results on date. Use FHIR filtering syntax to include operators. E.g. ge2022-05-01 will only show appointments with a start date > 2022-05-01",
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "_sort",
+                    "in": "query",
+                    "description": "Sort parameter based on support FHIR Appointment sort operators. In addition custom sort parameter appointment-sort-start is supported which sorts on start date. \nValid value e.g. appointment-sort-date",
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/CarePlan": {
+            "get": {
+                "summary": "CarePlan",
+                "operationId": "get-proxyfunction-careplan",
+                "parameters": [{
+                    "name": "patientId",
+                    "in": "query",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/Appointment": {
+            "get": {
+                "summary": "Appointment",
+                "description": "Retrieve appointsments for a patient",
+                "operationId": "get-proxyfunction-appointment",
+                "parameters": [{
+                    "name": "patientId",
+                    "in": "query",
+                    "description": "UUID of the patient",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "date",
+                    "in": "query",
+                    "description": "Date filter to filter results on date. Use FHIR filtering syntax to include operators. E.g. ge2022-05-01 will only show appointments with a start date > 2022-05-01",
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "_sort",
+                    "in": "query",
+                    "description": "Sort parameter based on support FHIR Appointment sort operators. In addition custom sort parameter appointment-sort-start is supported which sorts on start date. \nValid value e.g. appointment-sort-date",
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        }
+    },
+    "components": {},
+    "x-ms-paths": {
+        "/Task?owner={patientId}": {
+            "get": {
+                "summary": "Tasks by owner",
+                "description": "Get all tasks for a specific owner",
+                "operationId": "tasks-by-owner",
+                "parameters": [{
+                    "name": "patientId",
+                    "in": "query",
+                    "required": true,
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "_sort",
+                    "in": "query",
+                    "description": "Field to sort by based on FHIR search parameter syntax",
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "status",
+                    "in": "query",
+                    "description": "Filter the status of tasks",
+                    "schema": {
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        },
+        "/CareTeam": {
+            "get": {
+                "summary": "zAdmin: all careteams",
+                "description": "Retrieves a list of all active chat threads",
+                "operationId": "628f1092ec95f16aa0dc4017",
+                "parameters": [{
+                    "name": "date",
+                    "in": "query",
+                    "description": "Date filter to filter results on date. Use FHIR filtering syntax to include operators. E.g. ge2022-05-01 will only show appointments with a start date > 2022-05-01",
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "_sort",
+                    "in": "query",
+                    "description": "Sort parameter based on support FHIR Appointment sort operators. In addition custom sort parameter appointment-sort-start is supported which sorts on start date. \nValid value e.g. appointment-sort-date",
+                    "schema": {
+                        "type": ""
+                    }
+                }, {
+                    "name": "X-App",
+                    "in": "header",
+                    "schema": {
+                        "enum": [""],
+                        "type": ""
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": null
+                    }
+                }
+            }
+        }
+    }
+}
